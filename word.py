@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from zipfile import ZipFile
 import os
 from collections import Counter
@@ -48,6 +49,8 @@ def main():
         print('Fant {} ord, gitt bokstavene'.format(len(word_matches)))
         for word in word_matches:
             print(word)
+
+    raw_input('Trykk Enter for å avslutte')
 
 
 if __name__ == '__main__':
