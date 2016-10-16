@@ -1,6 +1,5 @@
 from zipfile import ZipFile
 import os
-import argparse
 from collections import Counter
 
 
@@ -22,34 +21,19 @@ def get_words(length):
 
 
 def main():
-    arg_parser = argparse.ArgumentParser()
-    arg_parser.add_argument(
-        '-n',
-        '--length',
-        dest='length',
-        type=int,
-        help='Length of the word you seek',
-        required=True
-    )
-    arg_parser.add_argument(
-        '--letters',
-        dest='letters',
-        type=str,
-        help='Specify the pool of letters that can be used to construct the word',
-        required=False
-    )
-    args = arg_parser.parse_args()
+    length = int(raw_input('Ordlengde? '))
+    letters = str(raw_input('Bokstaver? '))
 
-    words = get_words(args.length)
+    words = get_words(length)
     num_words = len(words)
     if num_words == 0:
         raise Exception('Found no words with the specified length')
     else:
-        print('Found {0} words with length {1}'.format(num_words, args.length))
+        print('Found {0} words with length {1}'.format(num_words, length))
 
-    if args.letters is not None:
-        print('Letters: {}'.format(args.letters))
-        letter_pool_counts = Counter(args.letters)
+    if letters is not None:
+        print('Letters: {}'.format(letters))
+        letter_pool_counts = Counter(letters)
         word_matches = []
 
         for word in words:
