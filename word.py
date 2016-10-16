@@ -27,12 +27,11 @@ def main():
     words = get_words(length)
     num_words = len(words)
     if num_words == 0:
-        raise Exception('Found no words with the specified length')
+        raise Exception('Fant ingen ord med ordlengde {}'.format(length))
     else:
-        print('Found {0} words with length {1}'.format(num_words, length))
+        print('Fant totalt {0} ord med ordlengde {1}'.format(num_words, length))
 
     if letters is not None:
-        print('Letters: {}'.format(letters))
         letter_pool_counts = Counter(letters)
         word_matches = []
 
@@ -46,7 +45,7 @@ def main():
             if is_word_match:
                 word_matches.append(word)
 
-        print('Found {} match(es), given the letter pool'.format(len(word_matches)))
+        print('Fant {} ord, gitt bokstavene'.format(len(word_matches)))
         for word in word_matches:
             print(word)
 
