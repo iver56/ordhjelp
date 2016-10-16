@@ -2,6 +2,8 @@
 from zipfile import ZipFile
 import os
 from collections import Counter
+import sys
+import locale
 
 
 def get_words(length):
@@ -14,7 +16,7 @@ def get_words(length):
 
     with open(os.path.join('data', 'nsf2016.txt'), 'r') as words_file:
         for line in words_file.readlines():
-            word = line.strip()
+            word = unicode(line.strip(), "utf-8")
             if len(word) == length:
                 words.add(word)
 
@@ -23,7 +25,11 @@ def get_words(length):
 
 def main():
     length = int(raw_input('Ordlengde? '))
-    letters = str(raw_input('Bokstaver? '))
+    letters = raw_input(
+        'Bokstaver? '
+    ).decode(
+        sys.stdin.encoding or locale.getpreferredencoding(True)
+    ).lower()
 
     words = get_words(length)
     num_words = len(words)
